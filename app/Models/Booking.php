@@ -17,10 +17,12 @@ class Booking extends Model
         'status',
         'user_id',
         'table_id',
-        'rooms_id',
+        'room_id',
         'duration',
         'price',
-        'consumption_packageid'
+        'consumption_packageid',
+        'check_in_qr',
+        'check_out_qr'
     ];
 
     public function user()

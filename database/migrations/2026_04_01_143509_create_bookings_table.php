@@ -13,14 +13,18 @@ return new class extends Migration {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->date('booking_date');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->string('status');
+            $table->time('start_time')->nullable();
+
+            $table->time('end_time')->nullable();
+
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('table_id')->constrained('tables')->onDelete('cascade');
+            $table->foreignId('table_id')->nullable()->constrained('tables')->onDelete('cascade');
             $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
             $table->time('duration');
             $table->float('price');
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
+
+
             // $table->foreignId('consumption_packageid')->nullable()->constrained('consumption_packages')->onDelete('cascade');
             $table->timestamps();
         });
