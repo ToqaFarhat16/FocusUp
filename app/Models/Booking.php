@@ -2,32 +2,41 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    /** @use HasFactory<\Database\Factories\BookingFactory> */
-    use HasFactory;
-
     protected $fillable = [
-        'booking_date',
-        'start_time',
-        'end_time',
-        'status',
         'user_id',
         'table_id',
         'room_id',
-        'duration',
-        'price',
-        'consumption_packageid',
-        'check_in_qr',
-        'check_out_qr'
+        'scheduled_start',
+        'actual_start',
+        'actual_end',
+        'hours',
+        'total_price',
+        'discount_percent',
+        'discount_amount',
+        'status',
     ];
 
-    public function user()
+    protected function casts(): array
     {
-        return $this->belongsTo(User::class);
+        return [
+            'scheduled_start' => 'datetime',
+            'actual_start' => 'datetime',
+            'actual_end' => 'datetime',
+            'hours' => 'decimal:2',
+            'total_price' => 'decimal:2',
+            'discount_percent' => 'decimal:2',
+            'discount_amount' => 'decimal:2',
+        ];
+    }
+
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
     }
 
     public function table()
@@ -35,8 +44,17 @@ class Booking extends Model
         return $this->belongsTo(Table::class);
     }
 
-    public function room()
+    public function consumptionPackage()
     {
-        return $this->belongsTo(Room::class, 'room_id');
+        return $this->belongsTo(ConsumptionPackage::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function luckyWeel()
+    {
+        return $this->hasOne(LuckyWheel::class, 'used_in_booking_id');
     }
 }

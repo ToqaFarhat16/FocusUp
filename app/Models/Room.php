@@ -2,21 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    /** @use HasFactory<\Database\Factories\RoomsFactory> */
-    use HasFactory;
     protected $fillable = [
         'name',
+        'type',
+        'is_active',
+        'is_occupied',
         'capacity',
-        'status',
-        'type'
-
+        'status'
     ];
-
 
     public function tables()
     {
@@ -27,6 +24,4 @@ class Room extends Model
     {
         return $this->hasMany(Booking::class);
     }
-
-
 }

@@ -17,8 +17,12 @@ class RoomResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'type' => $this->type,
             'capacity' => $this->capacity,
-            'status' => $this->status
+            'is_active' => $this->is_active,
+            'is_occupied' => $this->is_occupied,
+            'status' => $this->status,
+            'tables' => TableResource::collection($this->whenLoaded('tables'))
 
         ];
     }

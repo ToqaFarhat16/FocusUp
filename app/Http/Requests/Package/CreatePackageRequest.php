@@ -11,7 +11,7 @@ class CreatePackageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class CreatePackageRequest extends FormRequest
         return [
             'type' => 'required|string',
             'price' => 'required|numeric',
-            'duration_hours' => 'required|numeric|min:0.5|max:24'
+            'duration_hours' => 'required|integer'
         ];
     }
 }

@@ -48,7 +48,7 @@ class CrowdingController extends Controller
     }
 
     // تسجيل دخول QR
-    public function start_time(Request $request, $id)
+    public function actual_start(Request $request, $id)
     {
         $room = Room::find($id);
         if (!$room) {
@@ -59,7 +59,7 @@ class CrowdingController extends Controller
             'booking_id' => 'required|exists:bookings,id'
         ]);
 
-        $result = $this->crowdingService->start_time($room, $request->booking_id);
+        $result = $this->crowdingService->actual_start($room, $request->booking_id);
 
         if (isset($result['error'])) {
             return $this->fail($result['error'], 422);
@@ -72,7 +72,7 @@ class CrowdingController extends Controller
     }
 
     // تسجيل خروج QR
-    public function end_time(Request $request, $id)
+    public function actual_end(Request $request, $id)
     {
         $room = Room::find($id);
 
@@ -84,7 +84,7 @@ class CrowdingController extends Controller
             'booking_id' => 'required|exists:bookings,id'
         ]);
 
-        $result = $this->crowdingService->end_time($room, $request->booking_id);
+        $result = $this->crowdingService->actual_end($room, $request->booking_id);
 
         if (isset($result['error'])) {
             return $this->fail($result['error'], 422);

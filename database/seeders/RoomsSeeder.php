@@ -13,17 +13,17 @@ class RoomsSeeder extends Seeder
      */
     public function run(): void
     {
-        $rooms = [
-            ['name' => 'القاعة الهادئة A', 'type' => 'quiet', 'capacity' => 40, 'status' => 'active'],
-            ['name' => 'القاعة الهادئة B', 'type' => 'quiet', 'capacity' => 30, 'status' => 'active'],
-            ['name' => 'القاعة الاجتماعية (مدخنين)', 'type' => 'social_smoking', 'capacity' => 50, 'status' => 'active'],
-            ['name' => 'القاعة الاجتماعية (غير مدخنين)', 'type' => 'social_no_smoking', 'capacity' => 60, 'status' => 'active'],
-            ['name' => 'قاعة النقاش', 'type' => 'discussion', 'capacity' => 25, 'status' => 'active'],
-        ];
+        // $rooms = [
+        //     ['name' => 'القاعة الهادئة A', 'type' => 'quiet', 'capacity' => 40, 'status' => 'active'],
+        //     ['name' => 'القاعة الهادئة B', 'type' => 'quiet', 'capacity' => 30, 'status' => 'active'],
+        //     ['name' => 'القاعة الاجتماعية (مدخنين)', 'type' => 'social_smoking', 'capacity' => 50, 'status' => 'active'],
+        //     ['name' => 'القاعة الاجتماعية (غير مدخنين)', 'type' => 'social_no_smoking', 'capacity' => 60, 'status' => 'active'],
+        //     ['name' => 'قاعة النقاش', 'type' => 'discussion', 'capacity' => 25, 'status' => 'active'],
+        // ];
 
-        foreach ($rooms as $room) {
-            Room::create($room);
-        }
+        // foreach ($rooms as $room) {
+        //     Room::create($room);
+        // }
     }
 
 }

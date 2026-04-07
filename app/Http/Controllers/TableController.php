@@ -1,52 +1,51 @@
 <?php
+
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Table\CreateTableRequest;
-use App\Http\Requests\Table\UpdateTableRequest;
+
+use App\Http\Requests\Table\TableRequest;
 use App\Http\Resources\TableResource;
 use App\Models\Table;
 use App\Services\TableService;
 use App\Traits\ResponseTrait;
+// use Illuminate\Http\Request;
 
-class RoomController extends Controller
+class TableController extends Controller
 {
     use ResponseTrait;
+
     public function index()
     {
         return $this->success(
             TableResource::collection(
-                TableService::query()->where('status', 'active')->get()
+                TableService::query()->get()
             )
         );
     }
-
-    public function store(CreateTableRequest $request)
+    public function store(Table $request)
     {
         return $this->success(
             TableResource::make(
                 TableService::create($request->validated())
             )
         );
-    }
 
+    }
     public function show(Table $table)
     {
         return $this->success(
+
             TableResource::make($table)
         );
     }
-
-    public function update(UpdateTableRequest $request, Table $room)
+    public function update(TableRequest $request, Table $table)
     {
         return TableResource::make(
-            TableService::update($request->validated(), $room)
+            TableService::update($request->validated(), $table)
         );
     }
-
     public function destroy(Table $table)
     {
         TableService::delete($table);
-        return $this->success('delete room successfuly');
+        return $this->success('delete table successfuly');
     }
 }
-

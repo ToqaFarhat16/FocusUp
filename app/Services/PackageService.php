@@ -1,17 +1,15 @@
 <?php
-
 namespace App\Services;
 
 use App\Models\Package;
+use App\Models\Table;
 
 class PackageService
 {
-    /**
-     * Create a new class instance.
-     */
+
     public static function query()
     {
-        return Package::query();
+        return Table::query();
     }
 
     public static function create(array $data)

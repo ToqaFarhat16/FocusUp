@@ -124,7 +124,7 @@ class CrowdingService
     }
 
 
-    public function start_time(Room $room, int $bookingId): array
+    public function actual_start(Room $room, int $bookingId): array
     {
         $booking = $room->bookings()
             ->where('id', $bookingId)
@@ -147,7 +147,7 @@ class CrowdingService
     }
 
     // تسجيل خروج عبر QR
-    public function end_time(Room $room, int $bookingId): array
+    public function actual_end(Room $room, int $bookingId): array
     {
         $booking = $room->bookings()
             ->where('id', $bookingId)

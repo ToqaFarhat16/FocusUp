@@ -13,24 +13,21 @@ class Table extends Model
 
 
     protected $fillable = [
-        'table_num',
+        'name',
+        'type',
+        'is_active',
+        'is_occupied',
         'capacity',
-        'status',
-        'room_id'
+        'status'
     ];
 
-    // public function room()
-    // {
-    //     return $this->belongsTo(Rooms::class);
-    // }
-    public function room()
+    public function tables()
     {
-        return $this->belongsTo(Room::class);
+        return $this->hasMany(Table::class);
     }
 
     public function bookings()
     {
         return $this->hasMany(Booking::class);
     }
-
 }

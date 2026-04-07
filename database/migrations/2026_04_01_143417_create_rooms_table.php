@@ -24,6 +24,9 @@ return new class extends Migration {
             ]);
             $table->integer('capacity');
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_occupied')->default(false);
+
 
             $table->timestamps();
         });

@@ -11,7 +11,7 @@ class UpdatePackageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,10 @@ class UpdatePackageRequest extends FormRequest
     {
         return [
 
-            'status' => ['required', 'in:active,inactive']
+            "price" => "required|numeric",
+            "duration_hours" => "required|integer",
+            'status' => ['sometimes', 'in:active,inactive']
+
 
         ];
     }

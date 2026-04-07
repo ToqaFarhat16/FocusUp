@@ -4,7 +4,7 @@ namespace App\Http\Requests\Table;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateTableRequest extends FormRequest
+class TableRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,9 @@ class CreateTableRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'table_num' => 'required|string|unique:tables,table_num',
-            'capacity' => 'required|unsignedInteger',
+            'table_num' => 'required|integer',
+            'is_active' => 'somtimes|boolean',
+            "room_id" => 'required|exists:rooms,id'
         ];
     }
 }
